@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>91D4E3AF-9312-40B4-8D2A-32EE6B71BA06</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LendFour</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FFA5A67C6AF4240FC69FB9D99BCB3783349EF186</key>
+		<string>https://github.com/rheamanocha/LendFour.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>LendFour.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FFA5A67C6AF4240FC69FB9D99BCB3783349EF186</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/rheamanocha/LendFour.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FFA5A67C6AF4240FC69FB9D99BCB3783349EF186</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FFA5A67C6AF4240FC69FB9D99BCB3783349EF186</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LendFour</string>
+		</dict>
+	</array>
+</dict>
+</plist>
