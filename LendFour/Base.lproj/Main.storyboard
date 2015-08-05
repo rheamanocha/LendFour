@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rdd-7a-mDQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--My Notes View Controller-->
         <scene sceneID="hi8-1U-pzd">
             <objects>
-                <viewController id="9y5-e9-HXg" sceneMemberID="viewController">
+                <viewController id="9y5-e9-HXg" userLabel="My Notes View Controller" customClass="MyNotesViewController" customModule="LendFour" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jJS-eB-VEo"/>
                         <viewControllerLayoutGuide type="bottom" id="eav-vz-icj"/>
@@ -15,9 +15,51 @@
                     <view key="view" contentMode="scaleToFill" id="WIN-7g-EGE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jek-sC-R1U">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" rowHeight="81" id="9Ai-mP-QxK" customClass="NoteTableViewCell" customModule="LendFour" customModuleProvider="target">
+                                        <rect key="frame" x="140" y="278" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Ai-mP-QxK" id="WX9-8V-wyp">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Borrowed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvg-Qi-JPd">
+                                                    <rect key="frame" x="15" y="10" width="119" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Borrowed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulY-3z-qxD">
+                                                    <rect key="frame" x="15" y="39" width="116" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" red="0.21507109788359791" green="0.21507109788359791" blue="0.21507109788359791" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateBorrowedLabel" destination="ulY-3z-qxD" id="fnR-8h-L7Q"/>
+                                            <outlet property="titleLabel" destination="Nvg-Qi-JPd" id="0XE-Y9-UvN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jek-sC-R1U" firstAttribute="bottom" secondItem="eav-vz-icj" secondAttribute="top" id="08c-rL-uIO"/>
+                            <constraint firstAttribute="trailing" secondItem="Jek-sC-R1U" secondAttribute="trailing" id="EXh-Sf-IiS"/>
+                            <constraint firstItem="Jek-sC-R1U" firstAttribute="top" secondItem="WIN-7g-EGE" secondAttribute="top" id="XEn-1h-t8X"/>
+                            <constraint firstItem="Jek-sC-R1U" firstAttribute="leading" secondItem="WIN-7g-EGE" secondAttribute="leading" id="fTY-4u-QdV"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="jeH-HF-hRM"/>
+                    <navigationItem key="navigationItem" title="Lend" id="jeH-HF-hRM"/>
+                    <connections>
+                        <outlet property="tableView" destination="Jek-sC-R1U" id="l7c-qQ-NG7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ee-1W-gOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
