@@ -10,7 +10,45 @@ import UIKit
 
 class MyNotesViewController: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
+    enum State {
+        case DefaultMode
+        case SearchMode
+    }
+    
+    var state: State = .DefaultMode {
+        didSet {
+            // update notes and search bar whenever State changes
+            switch (state) {
+            case .DefaultMode:
+                /* REALM STUFF: let realm = Realm()
+                notes = realm.objects(Note).sorted("modificationDate", ascending: false) */
+                self.navigationController!.setNavigationBarHidden(false, animated: true) //2
+                searchBar.resignFirstResponder() // 3
+                searchBar.text = ""
+                searchBar.showsCancelButton = false
+            case .SearchMode:
+                let searchText = searchBar?.text ?? ""
+                searchBar.setShowsCancelButton(true, animated: true) //4
+                // REALM STUFF: notes = searchNotes(searchText) //5
+                self.navigationController!.setNavigationBarHidden(true, animated: true) //6
+            }
+        }
+    }
+    
+    var selectedNote: Note?
+    
+    func searchNotes(searchString: String) -> String /* REALM STUFF: Results<Note> */ {
+        /* REALM STUFF
+        let realm = Realm() */
+        let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR content CONTAINS[c] %@", searchString, searchString)
+        /* REALM STUFF
+        return realm.objects(Note).filter(searchPredicate)
+        */
+        return "will do search functionality later"
+    }
     
     /* REALM STUFF
     var notes: Results<Note>! {
@@ -26,21 +64,22 @@ class MyNotesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        let myNote = Note()
-        myNote.title = "Title of Test Note"
-        // REALM STUFF
-        /*
-        let realm = Realm() // grab default Realm
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        /* REALM STUFF
+        let realm = Realm()
         notes = realm.objects(Note).sorted("dateBorrowed", ascending: false)
         */
-
-        // Do any additional setup after loading the view.
+        state = .DefaultMode
+        super.viewWillAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
@@ -54,6 +93,16 @@ class MyNotesViewController: UIViewController {
                     realm.add(source.currentNote!)
                 }
                 */
+                
+                case "Delete":
+                    println("Deleted")
+                    /* REALM STUFF
+                    realm.write() {
+                        realm.delete(self.selectedNote!)
+                    }
+                    let source = segue.sourceViewController as! MyNoteDisplayViewController
+                    source.note = nil;
+                    */
             
             default:
                 println("No one loves \(identifier)")
@@ -65,15 +114,17 @@ class MyNotesViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "ShowExistingNote") {
+            let noteViewController = segue.destinationViewController as! MyNoteDisplayViewController
+            noteViewController.note = selectedNote
+        }
     }
-    */
+    
 
 }
 
@@ -106,7 +157,7 @@ extension MyNotesViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //selectedNote = notes[indexPath.row] //1
-        //self.performSegueWithIdentifier("ShowExistingNote", sender: self) //2
+        self.performSegueWithIdentifier("ShowExistingNote", sender: self) //2
     }
     
     //check if a row can be edited
@@ -132,5 +183,22 @@ extension MyNotesViewController: UITableViewDelegate {
             notes = realm.objects(Note).sorted("dateBorrowed", ascending: false)
             */
         }
+    }
+}
+
+extension MyNotesViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        state = .SearchMode
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        state = .DefaultMode
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        /* REALM STUFF
+        notes = searchNotes(searchText)
+        */
     }
 }

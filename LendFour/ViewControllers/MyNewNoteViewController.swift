@@ -33,7 +33,9 @@ class MyNewNoteViewController: UIViewController {
         // Pass the selected object to the new view controller.
         
         currentNote = Note()
-        currentNote!.title   = "Super Simple New Note"
+        let noteViewController = segue.destinationViewController as! MyNoteDisplayViewController
+        noteViewController.note = currentNote
+        noteViewController.edit = true
     }
     
 

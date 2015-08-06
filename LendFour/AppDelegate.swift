@@ -29,6 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println("No logged in user :(")
         }
         
+        UINavigationBar.appearance().barTintColor = StyleConstants.defaultBlueColor
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().translucent = false
+        
+        UIToolbar.appearance().barTintColor = StyleConstants.defaultBlueColor
+        UIToolbar.appearance().tintColor = UIColor.whiteColor()
+        UIToolbar.appearance().translucent = false
+        
         return true
     }
 
