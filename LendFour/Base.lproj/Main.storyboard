@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rdd-7a-mDQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--My Notes View Controller-->
@@ -16,24 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jek-sC-R1U">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="122" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jek-sC-R1U">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" rowHeight="81" id="9Ai-mP-QxK" customClass="NoteTableViewCell" customModule="LendFour" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" rowHeight="122" id="9Ai-mP-QxK" customClass="NoteTableViewCell" customModule="LendFour" customModuleProvider="target">
                                         <rect key="frame" x="140" y="278" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Ai-mP-QxK" id="WX9-8V-wyp">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Borrowed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvg-Qi-JPd">
-                                                    <rect key="frame" x="15" y="10" width="119" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <rect key="frame" x="117" y="14" width="138" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Borrowed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulY-3z-qxD">
-                                                    <rect key="frame" x="15" y="39" width="116" height="21"/>
+                                                    <rect key="frame" x="117" y="43" width="116" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" red="0.21507109788359791" green="0.21507109788359791" blue="0.21507109788359791" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -51,19 +52,61 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Jek-sC-R1U" firstAttribute="bottom" secondItem="eav-vz-icj" secondAttribute="top" id="08c-rL-uIO"/>
+                            <constraint firstItem="Jek-sC-R1U" firstAttribute="leading" secondItem="WIN-7g-EGE" secondAttribute="leadingMargin" constant="-16" id="8WE-Bi-OLG"/>
                             <constraint firstAttribute="trailing" secondItem="Jek-sC-R1U" secondAttribute="trailing" id="EXh-Sf-IiS"/>
+                            <constraint firstItem="Jek-sC-R1U" firstAttribute="top" secondItem="WIN-7g-EGE" secondAttribute="topMargin" id="FVT-Gq-H2L"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jek-sC-R1U" secondAttribute="trailing" constant="-16" id="M9S-Xc-O4o"/>
                             <constraint firstItem="Jek-sC-R1U" firstAttribute="top" secondItem="WIN-7g-EGE" secondAttribute="top" id="XEn-1h-t8X"/>
+                            <constraint firstItem="eav-vz-icj" firstAttribute="top" secondItem="Jek-sC-R1U" secondAttribute="bottom" id="bfF-BB-pxe"/>
                             <constraint firstItem="Jek-sC-R1U" firstAttribute="leading" secondItem="WIN-7g-EGE" secondAttribute="leading" id="fTY-4u-QdV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Lend" id="jeH-HF-hRM"/>
+                    <navigationItem key="navigationItem" title="Lend" id="pFW-1C-FcZ" userLabel="Home">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="AwM-QV-gfm">
+                            <connections>
+                                <segue destination="FZG-bi-Cta" kind="show" identifier="Add" id="JdJ-je-rP1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Jek-sC-R1U" id="l7c-qQ-NG7"/>
+                        <segue destination="FZG-bi-Cta" kind="show" identifier="Nav" id="UA4-wj-x8f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ee-1W-gOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1046" y="140"/>
+        </scene>
+        <!--New Lend-->
+        <scene sceneID="gp8-GQ-8uh">
+            <objects>
+                <viewController id="FZG-bi-Cta" customClass="MyNewNoteViewController" customModule="LendFour" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4CJ-dp-SuK"/>
+                        <viewControllerLayoutGuide type="bottom" id="tTR-KJ-z5B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sd4-FI-A7x">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Lend" id="kQR-Eo-XOd" userLabel="New Lend">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vwk-gX-O89">
+                            <connections>
+                                <segue destination="sBW-cc-AWm" kind="unwind" identifier="Cancel" unwindAction="unwindToSegue:" id="tnf-My-FtT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="vC3-ls-4BZ">
+                            <connections>
+                                <segue destination="sBW-cc-AWm" kind="unwind" identifier="Save" unwindAction="unwindToSegue:" id="hMt-VD-gYp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RFl-fb-MOW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="sBW-cc-AWm" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1721" y="140"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gpv-7P-t8M">
@@ -84,4 +127,7 @@
             <point key="canvasLocation" x="234" y="140"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="UA4-wj-x8f"/>
+    </inferredMetricsTieBreakers>
 </document>

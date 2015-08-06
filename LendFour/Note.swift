@@ -9,5 +9,9 @@
 import Foundation
 
 class Note: NSObject {
+    
+    dynamic var title: String = ""
+    dynamic var dateBorrowed = NSDate()
+    // dynamic var lendImage
    
 }

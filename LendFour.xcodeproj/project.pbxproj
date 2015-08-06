@@ -18,6 +18,7 @@
 		E1B0FB051B72913E00F2644F /* StyleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FB041B72913E00F2644F /* StyleConstants.swift */; };
 		E1B0FB081B7291A800F2644F /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FB071B7291A800F2644F /* Note.swift */; };
 		E1B0FB0B1B7292E300F2644F /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FB0A1B7292E300F2644F /* NoteTableViewCell.swift */; };
+		E1B0FB0D1B72C47600F2644F /* MyNewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FB0C1B72C47600F2644F /* MyNewNoteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		E1B0FB041B72913E00F2644F /* StyleConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleConstants.swift; sourceTree = "<group>"; };
 		E1B0FB071B7291A800F2644F /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		E1B0FB0A1B7292E300F2644F /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		E1B0FB0C1B72C47600F2644F /* MyNewNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNewNoteViewController.swift; path = ViewControllers/MyNewNoteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			children = (
 				E1B0FB001B7281CF00F2644F /* MyNotesViewController.swift */,
 				E1B0FAE11B7262C800F2644F /* ViewController.swift */,
+				E1B0FB0C1B72C47600F2644F /* MyNewNoteViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 			files = (
 				E1B0FB081B7291A800F2644F /* Note.swift in Sources */,
 				E1B0FAE21B7262C800F2644F /* ViewController.swift in Sources */,
+				E1B0FB0D1B72C47600F2644F /* MyNewNoteViewController.swift in Sources */,
 				E1B0FB051B72913E00F2644F /* StyleConstants.swift in Sources */,
 				E1B0FB011B7281CF00F2644F /* MyNotesViewController.swift in Sources */,
 				E1B0FAE01B7262C800F2644F /* AppDelegate.swift in Sources */,

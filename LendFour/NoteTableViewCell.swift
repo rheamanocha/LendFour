@@ -11,9 +11,27 @@ import UIKit
 
 class NoteTableViewCell: UITableViewCell {
     
+    // initialize date formatter only once, using a static computed property
+    static var dateFormatter: NSDateFormatter = {
+        var formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateBorrowedLabel: UILabel!
-    @IBOutlet weak var lendImage: UIImage!
+    @IBOutlet weak var lendImageView: UIImageView!
+    
+    var note: Note? {
+        didSet {
+            if let note = note, titleLabel = titleLabel, dateBorrowed = dateBorrowedLabel /* , lendImageView = lendImageView */ {
+                self.titleLabel.text = note.title
+                self.dateBorrowedLabel.text = NoteTableViewCell.dateFormatter.stringFromDate(note.dateBorrowed)
+                // self.lendImage
+            }
+        }
+    }
 
     
 }
