@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class MyNotesViewController: UIViewController {
+class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -63,14 +63,14 @@ class MyNotesViewController: UIViewController {
     }
     */
 
-    /* override func viewDidLoad() {
+     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         
-    } */
+    }
     
-    override func viewDidAppear(animated: Bool) {
+ /*   override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         // Creating the query that fetches the follow relationships for the current user
@@ -100,17 +100,48 @@ class MyNotesViewController: UIViewController {
             // refresh table view
             self.tableView.reloadData()
         }
-    }
+    }*/
     
     override func viewWillAppear(animated: Bool) {
         /* REALM STUFF
         let realm = Realm()
         notes = realm.objects(Note).sorted("dateBorrowed", ascending: false)
         */
+        
         state = .DefaultMode
         super.viewWillAppear(animated)
-    }
+        
+        // Creating the query that fetches the follow relationships for the current user
+        let followingQuery = PFQuery(className: "Follow")
+        followingQuery.whereKey("fromUser", equalTo: PFUser.currentUser()!)
+        
+        // Using the query to fetch posts created by users that current user is following
+        let postsFromFollowedUsers = Post.query()
+        postsFromFollowedUsers?.whereKey("user", matchesKey: "toUser", inQuery: followingQuery)
+        
+        // Creating query to retrueve all posts that the current user has posted
+        let postsFromThisUser = Post.query()
+        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
+        
+        // combined query of last 2 queries (any post that meets either)
+        let query = PFQuery.orQueryWithSubqueries([postsFromFollowedUsers!, postsFromThisUser!])
+        
+        // define that combied query should also fetch PFUser associated with the post
+        query.includeKey("user")
+        // results ordered by the createdAt field (posts on timeline will appear in chronological order)
+        query.orderByDescending("createdAt")
+        
+        // start network request
+        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
+            // recieve all posts that meet our requirements
+            self.posts = result as? [Post] ?? []
+            // refresh table view
+            self.tableView.reloadData()
+        }
 
+  }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
