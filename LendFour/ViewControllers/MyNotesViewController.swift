@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Parse
 
 class MyNotesViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
+    var posts: [Post] = []
     
     enum State {
         case DefaultMode
@@ -25,15 +28,15 @@ class MyNotesViewController: UIViewController {
             case .DefaultMode:
                 /* REALM STUFF: let realm = Realm()
                 notes = realm.objects(Note).sorted("modificationDate", ascending: false) */
-                self.navigationController!.setNavigationBarHidden(false, animated: true) //2
-                searchBar.resignFirstResponder() // 3
+                self.navigationController!.setNavigationBarHidden(false, animated: true)
+                searchBar.resignFirstResponder()
                 searchBar.text = ""
                 searchBar.showsCancelButton = false
             case .SearchMode:
                 let searchText = searchBar?.text ?? ""
-                searchBar.setShowsCancelButton(true, animated: true) //4
-                // REALM STUFF: notes = searchNotes(searchText) //5
-                self.navigationController!.setNavigationBarHidden(true, animated: true) //6
+                searchBar.setShowsCancelButton(true, animated: true)
+                // REALM STUFF: notes = searchNotes(searchText)
+                self.navigationController!.setNavigationBarHidden(true, animated: true)
             }
         }
     }
@@ -43,7 +46,8 @@ class MyNotesViewController: UIViewController {
     func searchNotes(searchString: String) -> String /* REALM STUFF: Results<Note> */ {
         /* REALM STUFF
         let realm = Realm() */
-        let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR content CONTAINS[c] %@", searchString, searchString)
+        //let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR content CONTAINS[c] %@ ", searchString, searchString)
+        let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ ", searchString, searchString)
         /* REALM STUFF
         return realm.objects(Note).filter(searchPredicate)
         */
@@ -59,11 +63,43 @@ class MyNotesViewController: UIViewController {
     }
     */
 
-    override func viewDidLoad() {
+    /* override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         
+    } */
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Creating the query that fetches the follow relationships for the current user
+        let followingQuery = PFQuery(className: "Follow")
+        followingQuery.whereKey("fromUser", equalTo: PFUser.currentUser()!)
+        
+        // Using the query to fetch posts created by users that current user is following
+        let postsFromFollowedUsers = Post.query()
+        postsFromFollowedUsers?.whereKey("user", matchesKey: "toUser", inQuery: followingQuery)
+
+        // Creating query to retrueve all posts that the current user has posted
+        let postsFromThisUser = Post.query()
+        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
+        
+        // combined query of last 2 queries (any post that meets either)
+        let query = PFQuery.orQueryWithSubqueries([postsFromFollowedUsers!, postsFromThisUser!])
+        
+        // define that combied query should also fetch PFUser associated with the post
+        query.includeKey("user")
+        // results ordered by the createdAt field (posts on timeline will appear in chronological order)
+        query.orderByDescending("createdAt")
+        
+        // start network request
+        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
+            // recieve all posts that meet our requirements
+            self.posts = result as? [Post] ?? []
+            // refresh table view
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -128,31 +164,9 @@ class MyNotesViewController: UIViewController {
 
 }
 
-extension MyNotesViewController: UITableViewDataSource { //extending to implement additional protocal functionality required to prodive data source for table view
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("NoteCell", forIndexPath: indexPath) as! NoteTableViewCell //returning a UITableViewCell with identifier "NoteCell"
-        // Can create custom table view cells for different styles
-        
-        let row = indexPath.row
-        cell.titleLabel.text = "Hello" // will be replaced
-        cell.dateBorrowedLabel.text = "Today" // will be replaced
-        /* REALM STUFF can do once Parse replaces Realm
-        let note = notes[row] as Note
-        cell.note = note 
-        */
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5 //will be replaced
-        /* REALM STUFF: do after replacing Realm with Parse
-        return Int(notes?.count ?? 0) // if notes isn't empty, numberOfRowsInSection will return notes.count, otherwise returns 0
-        */
-    }
-    
-}
+// MARK: - Extensions
 
+/* DELETE
 extension MyNotesViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -185,7 +199,9 @@ extension MyNotesViewController: UITableViewDelegate {
         }
     }
 }
+*/
 
+/* DELETE
 extension MyNotesViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -200,5 +216,23 @@ extension MyNotesViewController: UISearchBarDelegate {
         /* REALM STUFF
         notes = searchNotes(searchText)
         */
+    }
+}
+*/
+
+extension MyNotesViewController: UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // table view needs to have as many rows as we have posts stored in the posts property
+        return posts.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // returning a simple placeholder with title post
+        let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as! UITableViewCell
+        
+        cell.textLabel!.text = "Post"
+        
+        return cell
     }
 }

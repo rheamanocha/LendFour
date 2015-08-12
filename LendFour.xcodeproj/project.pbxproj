@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		467DFAC0032B3708C3336A79 /* Pods_LendFour.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA65CF90C7927F4C5FC0BEE /* Pods_LendFour.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E159E2E51B7A9E950098E589 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159E2E41B7A9E950098E589 /* Post.swift */; };
 		E1B0FAE01B7262C800F2644F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FADF1B7262C800F2644F /* AppDelegate.swift */; };
 		E1B0FAE21B7262C800F2644F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FAE11B7262C800F2644F /* ViewController.swift */; };
 		E1B0FAE51B7262C800F2644F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1B0FAE31B7262C800F2644F /* Main.storyboard */; };
@@ -20,6 +21,8 @@
 		E1B0FB0B1B7292E300F2644F /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FB0A1B7292E300F2644F /* NoteTableViewCell.swift */; };
 		E1B0FB0D1B72C47600F2644F /* MyNewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FB0C1B72C47600F2644F /* MyNewNoteViewController.swift */; };
 		E1B0FB0F1B72E93900F2644F /* MyNoteDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FB0E1B72E93900F2644F /* MyNoteDisplayViewController.swift */; };
+		E1B0FB141B73DADF00F2644F /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FB131B73DADF00F2644F /* PhotoViewController.swift */; };
+		E1B0FB171B73FB8900F2644F /* PhotoTakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FB161B73FB8900F2644F /* PhotoTakingHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,7 @@
 		0CA65CF90C7927F4C5FC0BEE /* Pods_LendFour.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LendFour.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		258D4D8D9E33EA83E3036F10 /* Pods-LendFour.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LendFour.release.xcconfig"; path = "Pods/Target Support Files/Pods-LendFour/Pods-LendFour.release.xcconfig"; sourceTree = "<group>"; };
 		4D1608B7166B2BB5A2B22AFF /* Pods-LendFour.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LendFour.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LendFour/Pods-LendFour.debug.xcconfig"; sourceTree = "<group>"; };
+		E159E2E41B7A9E950098E589 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = LendFour/Post.swift; sourceTree = SOURCE_ROOT; };
 		E1B0FADA1B7262C800F2644F /* LendFour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LendFour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B0FADE1B7262C800F2644F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1B0FADF1B7262C800F2644F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 		E1B0FB0A1B7292E300F2644F /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		E1B0FB0C1B72C47600F2644F /* MyNewNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNewNoteViewController.swift; path = ViewControllers/MyNewNoteViewController.swift; sourceTree = "<group>"; };
 		E1B0FB0E1B72E93900F2644F /* MyNoteDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNoteDisplayViewController.swift; path = ViewControllers/MyNoteDisplayViewController.swift; sourceTree = "<group>"; };
+		E1B0FB131B73DADF00F2644F /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoViewController.swift; path = ViewControllers/PhotoViewController.swift; sourceTree = "<group>"; };
+		E1B0FB161B73FB8900F2644F /* PhotoTakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTakingHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,8 @@
 		E1B0FADC1B7262C800F2644F /* LendFour */ = {
 			isa = PBXGroup;
 			children = (
+				E1E02E1B1B79657F0067E26C /* Models */,
+				E1B0FB151B73FB5700F2644F /* PhotoTaking */,
 				E1B0FB031B7290A400F2644F /* Constants */,
 				E1B0FB061B72915B00F2644F /* Entities */,
 				E1B0FB091B72927B00F2644F /* Views */,
@@ -160,6 +168,7 @@
 				E1B0FB001B7281CF00F2644F /* MyNotesViewController.swift */,
 				E1B0FB0C1B72C47600F2644F /* MyNewNoteViewController.swift */,
 				E1B0FB0E1B72E93900F2644F /* MyNoteDisplayViewController.swift */,
+				E1B0FB131B73DADF00F2644F /* PhotoViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -186,6 +195,22 @@
 				E1B0FB0A1B7292E300F2644F /* NoteTableViewCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		E1B0FB151B73FB5700F2644F /* PhotoTaking */ = {
+			isa = PBXGroup;
+			children = (
+				E1B0FB161B73FB8900F2644F /* PhotoTakingHelper.swift */,
+			);
+			path = PhotoTaking;
+			sourceTree = "<group>";
+		};
+		E1E02E1B1B79657F0067E26C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E159E2E41B7A9E950098E589 /* Post.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,10 +365,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1B0FB081B7291A800F2644F /* Note.swift in Sources */,
+				E159E2E51B7A9E950098E589 /* Post.swift in Sources */,
 				E1B0FAE21B7262C800F2644F /* ViewController.swift in Sources */,
 				E1B0FB0D1B72C47600F2644F /* MyNewNoteViewController.swift in Sources */,
 				E1B0FB051B72913E00F2644F /* StyleConstants.swift in Sources */,
 				E1B0FB011B7281CF00F2644F /* MyNotesViewController.swift in Sources */,
+				E1B0FB141B73DADF00F2644F /* PhotoViewController.swift in Sources */,
+				E1B0FB171B73FB8900F2644F /* PhotoTakingHelper.swift in Sources */,
 				E1B0FAE01B7262C800F2644F /* AppDelegate.swift in Sources */,
 				E1B0FB0B1B7292E300F2644F /* NoteTableViewCell.swift in Sources */,
 				E1B0FB0F1B72E93900F2644F /* MyNoteDisplayViewController.swift in Sources */,

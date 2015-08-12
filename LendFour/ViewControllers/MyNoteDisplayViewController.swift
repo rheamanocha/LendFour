@@ -9,13 +9,18 @@
 import Foundation
 import UIKit
 import ConvenienceKit
+import Parse
 
-class MyNoteDisplayViewController: UIViewController {
+class MyNoteDisplayViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var contentTextView: TextView!
+    // @IBOutlet weak var contentTextView: TextView!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
     @IBOutlet weak var toolbarBottomSpace: NSLayoutConstraint!
+   // @IBOutlet weak var takePhotoButton: UIButton!
+    @IBOutlet weak var lendImage: UIImageView!
+    
+    var photoTakingHelper: PhotoTakingHelper?
     
     var keyboardNotificationHandler: KeyboardNotificationHandler?
     
@@ -84,11 +89,11 @@ class MyNoteDisplayViewController: UIViewController {
     //MARK: Business Logic
     
     func displayNote(note: Note?) {
-        if let note = note, titleTextField = titleTextField, contentTextView = contentTextView {
+        if let note = note, titleTextField = titleTextField /*, contentTextView = contentTextView */ {
             titleTextField.text = note.title
-            contentTextView.text = note.content
+            // contentTextView.text = note.content
             
-            if count(note.title) == 0 && count(note.content) == 0 {
+            if count(note.title) == 0 /* && count(note.content) == 0 */ {
                 titleTextField.becomeFirstResponder()
             }
         }
@@ -115,16 +120,41 @@ class MyNoteDisplayViewController: UIViewController {
             */
         }
     }
+    
+    // MARK: PhotoTaking
+    func takePhoto() {
+        // instantiate photo taking class, provide callback for when photo  is selected
+        photoTakingHelper = PhotoTakingHelper(viewController: PhotoViewController(), callback: { (image: UIImage?) in
+            let post = Post()
+            post.image = image
+            post.uploadPost()
+        })
+    }
+    
+    /*
+    func buttonController(button: UIButton, shouldSelectViewController viewController: UIViewController) -> Bool{
+        if (viewController is PhotoViewController) {
+            takePhoto()
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    */
 
 }
+
+// MARK: - Extensions
 
 extension MyNoteDisplayViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField == titleTextField) {
-            contentTextView.returnKeyType = .Done
-            contentTextView.becomeFirstResponder()
+            // contentTextView.returnKeyType = .Done
+            // contentTextView.becomeFirstResponder()
         }
         return false
     }
 }
+

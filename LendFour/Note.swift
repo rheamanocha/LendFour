@@ -11,7 +11,7 @@ import Foundation
 class Note: NSObject {
     
     dynamic var title: String = ""
-    dynamic var content: String = ""
+    // dynamic var content: String = ""
     dynamic var dateBorrowed = NSDate()
     // dynamic var lendImage
    

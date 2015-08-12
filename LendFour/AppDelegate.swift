@@ -38,6 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIToolbar.appearance().tintColor = UIColor.whiteColor()
         UIToolbar.appearance().translucent = false
         
+        let acl = PFACL()
+        acl.setPublicReadAccess(true)
+        PFACL.setDefaultACL(acl, withAccessForCurrentUser: true)
+        
         return true
     }
 

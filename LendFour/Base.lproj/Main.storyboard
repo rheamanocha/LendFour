@@ -29,7 +29,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" rowHeight="122" id="9Ai-mP-QxK" customClass="NoteTableViewCell" customModule="LendFour" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="122" id="9Ai-mP-QxK" customClass="NoteTableViewCell" customModule="LendFour" customModuleProvider="target">
                                         <rect key="frame" x="140" y="278" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Ai-mP-QxK" id="WX9-8V-wyp">
@@ -55,6 +55,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9y5-e9-HXg" id="cxg-mG-B8I"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -169,61 +172,101 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2t-fp-PsX">
                                 <rect key="frame" x="0.0" y="-44" width="600" height="600"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hOs-n2-xk6">
-                                        <rect key="frame" x="8" y="129" width="584" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdZ-51-dZ9" customClass="TextView" customModule="ConvenienceKit">
-                                        <rect key="frame" x="8" y="175" width="584" height="412"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CdZ-51-dZ9" customClass="TextView" customModule="ConvenienceKit">
+                                        <rect key="frame" x="8" y="458" width="584" height="129"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="412" id="ySz-74-WvB"/>
+                                            <constraint firstAttribute="height" constant="129" id="l7s-YB-4oF"/>
                                         </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Jn-bp-ZCa">
+                                        <rect key="frame" x="150" y="109" width="300" height="300"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PN6-VS-8da">
+                                        <rect key="frame" x="150" y="109" width="300" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="FaN-Em-yMh"/>
+                                            <constraint firstAttribute="width" constant="300" id="TUn-rA-amU"/>
+                                        </constraints>
+                                        <state key="normal" title="Take Photo">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="takePhoto:" destination="n6Y-WE-pfq" eventType="touchUpInside" id="uns-Wv-ihX"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hOs-n2-xk6">
+                                        <rect key="frame" x="8" y="420" width="584" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="top" secondItem="n2t-fp-PsX" secondAttribute="top" constant="129" id="I3u-PA-6GR"/>
-                                    <constraint firstAttribute="bottom" secondItem="CdZ-51-dZ9" secondAttribute="bottom" constant="13" id="Xea-I8-40I"/>
-                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="leading" secondItem="n2t-fp-PsX" secondAttribute="leadingMargin" id="dXQ-eC-eeO"/>
-                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="centerX" secondItem="n2t-fp-PsX" secondAttribute="centerX" id="eSR-4W-asK"/>
-                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="trailing" secondItem="CdZ-51-dZ9" secondAttribute="trailing" id="hcL-51-O9Y"/>
-                                    <constraint firstItem="CdZ-51-dZ9" firstAttribute="top" secondItem="hOs-n2-xk6" secondAttribute="bottom" constant="16" id="peB-XA-tRh"/>
-                                    <constraint firstItem="CdZ-51-dZ9" firstAttribute="trailing" secondItem="n2t-fp-PsX" secondAttribute="trailingMargin" id="sYP-aM-FpT"/>
-                                    <constraint firstItem="CdZ-51-dZ9" firstAttribute="leading" secondItem="hOs-n2-xk6" secondAttribute="leading" id="yvG-Ue-OH7"/>
+                                    <constraint firstItem="CdZ-51-dZ9" firstAttribute="top" secondItem="hOs-n2-xk6" secondAttribute="bottom" constant="8" symbolic="YES" id="6X9-zQ-aIP"/>
+                                    <constraint firstItem="CdZ-51-dZ9" firstAttribute="bottom" secondItem="n2t-fp-PsX" secondAttribute="bottomMargin" id="7DF-VI-flU"/>
+                                    <constraint firstItem="PN6-VS-8da" firstAttribute="centerX" secondItem="hOs-n2-xk6" secondAttribute="centerX" id="ADG-Ps-6Va"/>
+                                    <constraint firstItem="CdZ-51-dZ9" firstAttribute="centerX" secondItem="n2t-fp-PsX" secondAttribute="centerX" id="ARF-wv-JJ5"/>
+                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="top" secondItem="9Jn-bp-ZCa" secondAttribute="bottom" constant="12" id="FXG-uu-2cE"/>
+                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="leading" secondItem="n2t-fp-PsX" secondAttribute="leadingMargin" id="G5I-sQ-lAR"/>
+                                    <constraint firstItem="CdZ-51-dZ9" firstAttribute="leading" secondItem="hOs-n2-xk6" secondAttribute="leading" id="HzM-K0-MUK"/>
+                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="trailing" secondItem="CdZ-51-dZ9" secondAttribute="trailing" id="QZV-Au-6GU"/>
+                                    <constraint firstItem="PN6-VS-8da" firstAttribute="top" secondItem="n2t-fp-PsX" secondAttribute="top" constant="49" id="SFd-z7-0Yv"/>
+                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="trailing" secondItem="n2t-fp-PsX" secondAttribute="trailingMargin" id="gnt-Ih-WQu"/>
+                                    <constraint firstItem="9Jn-bp-ZCa" firstAttribute="bottom" secondItem="PN6-VS-8da" secondAttribute="bottom" id="hBy-gZ-6cv"/>
+                                    <constraint firstItem="PN6-VS-8da" firstAttribute="leading" secondItem="9Jn-bp-ZCa" secondAttribute="leading" id="if5-tD-J98"/>
+                                    <constraint firstItem="9Jn-bp-ZCa" firstAttribute="top" secondItem="PN6-VS-8da" secondAttribute="top" id="thK-dX-GA2"/>
+                                    <constraint firstItem="PN6-VS-8da" firstAttribute="trailing" secondItem="9Jn-bp-ZCa" secondAttribute="trailing" id="xUE-w2-5Ho"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lLj-dd-4mx" firstAttribute="bottom" secondItem="OFM-Kz-rZM" secondAttribute="top" id="2va-Sq-5lm"/>
-                            <constraint firstAttribute="trailing" secondItem="lLj-dd-4mx" secondAttribute="trailing" id="f8e-kh-bFf"/>
-                            <constraint firstItem="n2t-fp-PsX" firstAttribute="top" secondItem="2MQ-6B-Ruu" secondAttribute="topMargin" constant="-44" id="fwT-am-hzo"/>
-                            <constraint firstItem="lLj-dd-4mx" firstAttribute="leading" secondItem="2MQ-6B-Ruu" secondAttribute="leading" id="h34-8H-zUW"/>
-                            <constraint firstItem="lLj-dd-4mx" firstAttribute="top" secondItem="n2t-fp-PsX" secondAttribute="bottom" id="vHV-jw-vhO"/>
-                            <constraint firstItem="lLj-dd-4mx" firstAttribute="leading" secondItem="n2t-fp-PsX" secondAttribute="leading" id="wdD-3u-eVm"/>
-                            <constraint firstItem="lLj-dd-4mx" firstAttribute="trailing" secondItem="n2t-fp-PsX" secondAttribute="trailing" id="xsh-Ux-DtA"/>
+                            <constraint firstItem="lLj-dd-4mx" firstAttribute="bottom" secondItem="OFM-Kz-rZM" secondAttribute="top" id="DOk-oR-Srm"/>
+                            <constraint firstItem="n2t-fp-PsX" firstAttribute="trailing" secondItem="lLj-dd-4mx" secondAttribute="trailing" id="GkS-qG-sOF"/>
+                            <constraint firstItem="n2t-fp-PsX" firstAttribute="leading" secondItem="lLj-dd-4mx" secondAttribute="leading" id="RvX-lV-YfG"/>
+                            <constraint firstItem="lLj-dd-4mx" firstAttribute="leading" secondItem="2MQ-6B-Ruu" secondAttribute="leading" id="Z40-8y-1Vp"/>
+                            <constraint firstItem="n2t-fp-PsX" firstAttribute="top" secondItem="2MQ-6B-Ruu" secondAttribute="topMargin" constant="-44" id="llF-kB-5ih"/>
+                            <constraint firstItem="lLj-dd-4mx" firstAttribute="top" secondItem="n2t-fp-PsX" secondAttribute="bottom" id="oOX-Om-ISs"/>
+                            <constraint firstAttribute="trailing" secondItem="lLj-dd-4mx" secondAttribute="trailing" id="tO4-rY-TGe"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <connections>
                         <outlet property="contentTextView" destination="CdZ-51-dZ9" id="pgr-Ky-LYQ"/>
                         <outlet property="deleteButton" destination="kaI-aI-LzX" id="LjW-JX-Xd1"/>
+                        <outlet property="lendImage" destination="9Jn-bp-ZCa" id="IJe-Ww-gbf"/>
                         <outlet property="titleTextField" destination="hOs-n2-xk6" id="ZgG-5n-qZC"/>
-                        <outlet property="toolbarBottomSpace" destination="2va-Sq-5lm" id="p6A-6o-vkH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PR7-VY-VaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="jx6-4Z-hjZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2414" y="108"/>
+            <point key="canvasLocation" x="2406" y="140"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="AY9-kC-zvE">
+            <objects>
+                <viewController id="gHf-MR-s50" customClass="PhotoViewController" customModule="LendFour" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HCJ-cD-PQj"/>
+                        <viewControllerLayoutGuide type="bottom" id="2ru-IK-Xql"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6XV-hT-cg9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ad-Az-G5X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3070" y="140"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZHL-Co-VOG"/>
         <segue reference="UA4-wj-x8f"/>
+        <segue reference="ZHL-Co-VOG"/>
     </inferredMetricsTieBreakers>
 </document>
