@@ -12,6 +12,7 @@ import Parse
 class MyNewNoteViewController: UIViewController {
     
    // var currentNote: Note?
+    var photoViewController: PhotoViewController!
     
     @IBOutlet weak var takePhotoButton: UIButton!
     
@@ -46,20 +47,21 @@ class MyNewNoteViewController: UIViewController {
     // MARK: PhotoTaking
     func takePhoto() {
         // instantiate photo taking class, provide callback for when photo  is selected
-        photoTakingHelper = PhotoTakingHelper(viewController: PhotoViewController(), callback: { (image: UIImage?) in
-            let post = Post()
-            post.image = image
-            post.uploadPost()
-        })
+        photoTakingHelper =
+            PhotoTakingHelper(viewController: self.navigationController!) { (image: UIImage?) in
+                let post = Post()
+                post.image = image!
+                post.uploadPost()
+                
+        }
     }
     
     
-    func buttonController(button: UIButton, shouldSelectViewController viewController: UIViewController) -> Bool{
+    func navigationController(navigationController: UINavigationController, shouldSelectViewController viewController: UIViewController) -> Bool {
         if (viewController is PhotoViewController) {
             takePhoto()
             return false
-        }
-        else {
+        } else {
             return true
         }
     }
