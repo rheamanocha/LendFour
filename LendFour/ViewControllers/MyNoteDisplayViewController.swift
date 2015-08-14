@@ -22,16 +22,16 @@ class MyNoteDisplayViewController: UIViewController, UINavigationControllerDeleg
     
     var edit: Bool = false
     
-    var note: Note? {
+    var post: Post? {
         didSet {
-            displayNote(note)
+            displayPost(post)
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        displayNote(self.note)
+        displayPost(self.post)
         
         titleTextField.returnKeyType = .Next
         titleTextField.delegate = self
@@ -84,13 +84,14 @@ class MyNoteDisplayViewController: UIViewController, UINavigationControllerDeleg
     
     //MARK: Business Logic
     
-    func displayNote(note: Note?) {
-        if let note = note, titleTextField = titleTextField {
-            titleTextField.text = note.title
+    func displayPost(post: Post?) {
+        if let post = post, titleTextField = titleTextField {
+            titleTextField.text = post.title!.text
             
-            if count(note.title) == 0 /* && count(note.content) == 0 */ {
+            /*
+            if count(post.title!.text) == 0 /* && count(note.content) == 0 */ {
                 titleTextField.becomeFirstResponder()
-            }
+            }*/
         }
     }
     
@@ -101,7 +102,7 @@ class MyNoteDisplayViewController: UIViewController, UINavigationControllerDeleg
     }
     
     func saveNote() {
-        if let note = note {
+        if let post = post {
             /* REALM STUFF
             
             let realm = Realm()

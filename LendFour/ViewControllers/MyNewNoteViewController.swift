@@ -11,7 +11,6 @@ import Parse
 
 class MyNewNoteViewController: UIViewController {
     
-   // var currentNote: Note?
     var photoViewController: PhotoViewController!
     
     @IBOutlet weak var takePhotoButton: UIButton!
@@ -56,7 +55,7 @@ class MyNewNoteViewController: UIViewController {
         }
     }
     
-    
+
     func navigationController(navigationController: UINavigationController, shouldSelectViewController viewController: UIViewController) -> Bool {
         if (viewController is PhotoViewController) {
             takePhoto()

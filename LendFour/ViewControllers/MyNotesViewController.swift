@@ -41,6 +41,8 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    // MARK: Search
+    
     var selectedNote: Note?
     
     func searchNotes(searchString: String) -> String /* REALM STUFF: Results<Note> */ {
@@ -62,6 +64,8 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     */
+    
+    // MARK: Views
 
      override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,37 +74,6 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
- /*   override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // Creating the query that fetches the follow relationships for the current user
-        let followingQuery = PFQuery(className: "Follow")
-        followingQuery.whereKey("fromUser", equalTo: PFUser.currentUser()!)
-        
-        // Using the query to fetch posts created by users that current user is following
-        let postsFromFollowedUsers = Post.query()
-        postsFromFollowedUsers?.whereKey("user", matchesKey: "toUser", inQuery: followingQuery)
-
-        // Creating query to retrueve all posts that the current user has posted
-        let postsFromThisUser = Post.query()
-        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
-        
-        // combined query of last 2 queries (any post that meets either)
-        let query = PFQuery.orQueryWithSubqueries([postsFromFollowedUsers!, postsFromThisUser!])
-        
-        // define that combied query should also fetch PFUser associated with the post
-        query.includeKey("user")
-        // results ordered by the createdAt field (posts on timeline will appear in chronological order)
-        query.orderByDescending("createdAt")
-        
-        // start network request
-        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
-            // recieve all posts that meet our requirements
-            self.posts = result as? [Post] ?? []
-            // refresh table view
-            self.tableView.reloadData()
-        }
-    }*/
     
     override func viewWillAppear(animated: Bool) {
         /* REALM STUFF
@@ -188,7 +161,7 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "ShowExistingNote") {
             let noteViewController = segue.destinationViewController as! MyNoteDisplayViewController
-            noteViewController.note = selectedNote
+            // noteViewController.post = selectedNote
         }
     }
     
