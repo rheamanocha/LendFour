@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Bond
 
 class NoteTableViewCell: UITableViewCell {
     
@@ -21,14 +22,25 @@ class NoteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateBorrowedLabel: UILabel!
-    @IBOutlet weak var lendImageView: UIImageView!
+    @IBOutlet weak var postImageView: UIImageView!
     
-    var note: Note? {
+    /* var note: Note? {
         didSet {
             if let note = note, titleLabel = titleLabel, dateBorrowed = dateBorrowedLabel /* , lendImageView = lendImageView */ {
                 self.titleLabel.text = note.title
                 self.dateBorrowedLabel.text = NoteTableViewCell.dateFormatter.stringFromDate(note.dateBorrowed)
                 // self.lendImage
+            }
+        }
+    } */
+    
+    var post: Post? {
+        didSet{
+            // optional binding to check whether new value is nil
+            if let post = post {
+                // if value isn't nil, create binding b/t image property of post and postImageView
+                //bind the image of the post to the 'postImage' view
+                post.image ->> postImageView
             }
         }
     }

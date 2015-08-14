@@ -17,41 +17,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="360" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jek-sC-R1U">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="320" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jek-sC-R1U">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="Rcz-hn-xxI">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="90" id="9Ai-mP-QxK" customClass="NoteTableViewCell" customModule="LendFour" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="320" id="9Ai-mP-QxK" customClass="NoteTableViewCell" customModule="LendFour" customModuleProvider="target">
                                         <rect key="frame" x="140" y="278" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Ai-mP-QxK" id="WX9-8V-wyp">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Borrowed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvg-Qi-JPd">
-                                                    <rect key="frame" x="106" y="10" width="138" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Borrowed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulY-3z-qxD">
-                                                    <rect key="frame" x="106" y="37" width="116" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                    <color key="textColor" red="0.21507109788359791" green="0.21507109788359791" blue="0.21507109788359791" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-J8-AF8">
-                                                    <rect key="frame" x="18" y="5" width="80" height="80"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-J8-AF8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="VYo-J8-AF8" secondAttribute="bottom" id="24o-WH-vLQ"/>
+                                                <constraint firstItem="VYo-J8-AF8" firstAttribute="leading" secondItem="WX9-8V-wyp" secondAttribute="leadingMargin" id="9wn-6o-wgX"/>
+                                                <constraint firstItem="VYo-J8-AF8" firstAttribute="top" secondItem="WX9-8V-wyp" secondAttribute="topMargin" id="DDJ-ke-BgR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VYo-J8-AF8" secondAttribute="trailing" id="YZm-lw-WuO"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dateBorrowedLabel" destination="ulY-3z-qxD" id="fnR-8h-L7Q"/>
-                                            <outlet property="titleLabel" destination="Nvg-Qi-JPd" id="0XE-Y9-UvN"/>
+                                            <outlet property="postImageView" destination="VYo-J8-AF8" id="R5K-ir-wzE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -80,7 +68,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="Rcz-hn-xxI" id="qc1-3V-WGq"/>
                         <outlet property="tableView" destination="Jek-sC-R1U" id="tjB-Ug-vL3"/>
                         <segue destination="n6Y-WE-pfq" kind="show" identifier="ShowExistingNote" id="ZHL-Co-VOG"/>
                         <segue destination="FZG-bi-Cta" kind="show" id="tiG-z4-niE"/>
@@ -88,7 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ee-1W-gOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1046" y="140"/>
+            <point key="canvasLocation" x="1046" y="148"/>
         </scene>
         <!--New Lend-->
         <scene sceneID="gp8-GQ-8uh">
@@ -186,30 +173,24 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2t-fp-PsX">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n2t-fp-PsX">
                                 <rect key="frame" x="0.0" y="-44" width="600" height="600"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Jn-bp-ZCa">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Jn-bp-ZCa">
                                         <rect key="frame" x="140" y="115" width="320" height="320"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="320" id="3eX-oq-xXy"/>
                                             <constraint firstAttribute="width" constant="320" id="Sui-43-zqH"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hOs-n2-xk6">
-                                        <rect key="frame" x="8" y="454" width="584" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V41-7D-XWh">
+                                        <rect key="frame" x="140" y="479" width="320" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="hOs-n2-xk6" secondAttribute="bottom" constant="52" id="D1h-1c-V1H"/>
-                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="trailing" secondItem="n2t-fp-PsX" secondAttribute="trailingMargin" id="KzQ-tM-ZFZ"/>
-                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="top" secondItem="9Jn-bp-ZCa" secondAttribute="bottom" constant="19" id="Nfu-e9-Tos"/>
-                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="centerX" secondItem="9Jn-bp-ZCa" secondAttribute="centerX" id="Qq6-3x-vC2"/>
-                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="leading" secondItem="n2t-fp-PsX" secondAttribute="leadingMargin" id="hWa-FF-I4u"/>
                                     <constraint firstItem="9Jn-bp-ZCa" firstAttribute="top" secondItem="n2t-fp-PsX" secondAttribute="top" constant="115" id="n2C-LF-dle"/>
-                                    <constraint firstItem="hOs-n2-xk6" firstAttribute="centerX" secondItem="n2t-fp-PsX" secondAttribute="centerX" id="vXH-fa-S4E"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -229,7 +210,7 @@
                         <outlet property="deleteButton" destination="kaI-aI-LzX" id="LjW-JX-Xd1"/>
                         <outlet property="lendImage" destination="9Jn-bp-ZCa" id="IJe-Ww-gbf"/>
                         <outlet property="takePhotoButton" destination="PN6-VS-8da" id="qvi-d9-w1a"/>
-                        <outlet property="titleTextField" destination="hOs-n2-xk6" id="ZgG-5n-qZC"/>
+                        <outlet property="titleTextField" destination="V41-7D-XWh" id="aiP-q7-by5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PR7-VY-VaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -260,7 +241,7 @@
         <image name="Camera" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FvK-HK-6sS"/>
         <segue reference="ZHL-Co-VOG"/>
+        <segue reference="FvK-HK-6sS"/>
     </inferredMetricsTieBreakers>
 </document>

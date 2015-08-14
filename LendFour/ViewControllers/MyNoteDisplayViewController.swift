@@ -103,17 +103,7 @@ class MyNoteDisplayViewController: UIViewController, UINavigationControllerDeleg
     
     func saveNote() {
         if let post = post {
-            /* REALM STUFF
             
-            let realm = Realm()
-            realm.write {
-                if (note.title != self.titleTextField.text || note.content != self.contentTextView.textValue) {
-                    note.title = self.titleTextField.text
-                    note.content = self.contentTextView.textValue
-                    note.dateBorrowed = NSDate()
-                }
-            
-            */
         }
     }
     
@@ -127,8 +117,7 @@ extension MyNoteDisplayViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField == titleTextField) {
-            // contentTextView.returnKeyType = .Done
-            // contentTextView.becomeFirstResponder()
+        
         }
         return false
     }

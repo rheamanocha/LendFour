@@ -8,15 +8,18 @@
 
 import UIKit
 import Parse
+import ConvenienceKit
 
 class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    // @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     var posts: [Post] = []
     
-    enum State {
+    // MARK: Search
+    
+   /*  enum State {
         case DefaultMode
         case SearchMode
     }
@@ -41,9 +44,7 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    // MARK: Search
-    
-    var selectedNote: Note?
+    // var selectedNote: Note?
     
     func searchNotes(searchString: String) -> String /* REALM STUFF: Results<Note> */ {
         /* REALM STUFF
@@ -63,6 +64,7 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
             tableView?.reloadData()
         }
     }
+    */ 
     */
     
     // MARK: Views
@@ -75,41 +77,16 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
-    override func viewWillAppear(animated: Bool) { //viewdidappear?
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        state = .DefaultMode
-        super.viewWillAppear(animated)
-        
-        // Creating the query that fetches the follow relationships for the current user
-        let followingQuery = PFQuery(className: "Follow")
-        followingQuery.whereKey("fromUser", equalTo: PFUser.currentUser()!)
-        
-        // Using the query to fetch posts created by users that current user is following
-        let postsFromFollowedUsers = Post.query()
-        postsFromFollowedUsers?.whereKey("user", matchesKey: "toUser", inQuery: followingQuery)
-        
-        // Creating query to retrueve all posts that the current user has posted
-        let postsFromThisUser = Post.query()
-        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
-        
-        // combined query of last 2 queries (any post that meets either)
-        let query = PFQuery.orQueryWithSubqueries([postsFromFollowedUsers!, postsFromThisUser!])
-        
-        // define that combied query should also fetch PFUser associated with the post
-        query.includeKey("user")
-        // results ordered by the createdAt field (posts on timeline will appear in chronological order)
-        query.orderByDescending("createdAt")
-        
-        // start network request
-        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
-            // recieve all posts that meet our requirements
+        ParseHelper.timelineRequestforCurrentUser {
+            (result: [AnyObject]?, error: NSError?) -> Void in
             self.posts = result as? [Post] ?? []
-            // refresh table view
+            
             self.tableView.reloadData()
         }
-
-  }
-
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -123,22 +100,10 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
                 case "Save":
                 let source = segue.sourceViewController as! MyNewNoteViewController
                 
-                println("Saved") //will remove
-                /* REALM STUFF
-                realm.write() {
-                    realm.add(source.currentNote!)
-                }
-                */
+                println("Saved")
                 
                 case "Delete":
                     println("Deleted")
-                    /* REALM STUFF
-                    realm.write() {
-                        realm.delete(self.selectedNote!)
-                    }
-                    let source = segue.sourceViewController as! MyNoteDisplayViewController
-                    source.note = nil;
-                    */
             
             default:
                 println("No one loves \(identifier)")
@@ -201,7 +166,7 @@ extension MyNotesViewController: UITableViewDelegate {
 }
 
 
-
+/*
 extension MyNotesViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -217,7 +182,7 @@ extension MyNotesViewController: UISearchBarDelegate {
         notes = searchNotes(searchText)
         */
     }
-}
+} */
 
 
 extension MyNotesViewController: UITableViewDataSource {
@@ -228,10 +193,14 @@ extension MyNotesViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // returning a simple placeholder with title post
-        let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as! UITableViewCell
+        // Casted NoteTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as! NoteTableViewCell
         
-        cell.textLabel!.text = "Post"
+        let post = posts[indexPath.row]
+        // trigger image download
+        post.downloadImage()
+        // assign the post that shall be displayed to the post property
+        cell.post = post
         
         return cell
     }

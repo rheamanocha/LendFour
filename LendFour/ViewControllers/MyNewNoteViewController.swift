@@ -12,12 +12,11 @@ import Parse
 class MyNewNoteViewController: UIViewController {
     
     var photoViewController: PhotoViewController!
-    
-    @IBOutlet weak var takePhotoButton: UIButton!
-    
     var photoTakingHelper: PhotoTakingHelper?
 
-    override func viewDidLoad() {
+    @IBOutlet weak var takePhotoButton: UIButton!
+    
+        override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -37,10 +36,6 @@ class MyNewNoteViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-   /*     currentNote = Note()
-        let noteViewController = segue.destinationViewController as! MyNoteDisplayViewController
-        noteViewController.note = currentNote
-        noteViewController.edit = true */
     }
     
     // MARK: PhotoTaking
@@ -50,7 +45,7 @@ class MyNewNoteViewController: UIViewController {
             PhotoTakingHelper(viewController: self.navigationController!) { (image: UIImage?) in
                 
                 let post = Post()
-                post.image = image!
+                post.image.value = image!
                 post.uploadPost()
                 
                 
