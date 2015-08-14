@@ -75,7 +75,7 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) { //viewdidappear?
         
         state = .DefaultMode
         super.viewWillAppear(animated)

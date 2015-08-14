@@ -42,9 +42,9 @@ class Post : PFObject, PFSubclassing { //need to inherit from PFObject and imple
     }
     
     func uploadPost() {
+        
         let imageData = UIImageJPEGRepresentation(image, 0.8)
         let imageFile = PFFile(data: imageData)
-        let title = PFObject()
         
         photoUploadTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler { () -> Void in
             UIApplication.sharedApplication().endBackgroundTask(self.photoUploadTask!)
@@ -53,8 +53,8 @@ class Post : PFObject, PFSubclassing { //need to inherit from PFObject and imple
         imageFile.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             UIApplication.sharedApplication().endBackgroundTask(self.photoUploadTask!)
         }
+
         
-        // any uploaded post should be associated with the current user
         user = PFUser.currentUser()
         self.imageFile = imageFile
         saveInBackgroundWithBlock(nil)
