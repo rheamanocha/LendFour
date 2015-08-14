@@ -44,7 +44,7 @@ class MyNewNoteViewController: UIViewController {
     }
     
     // MARK: PhotoTaking
-    func takePhoto() {
+    @IBAction func takePhoto(sender: UIButton) {
         // instantiate photo taking class, provide callback for when photo  is selected
         photoTakingHelper =
             PhotoTakingHelper(viewController: self.navigationController!) { (image: UIImage?) in
@@ -55,14 +55,4 @@ class MyNewNoteViewController: UIViewController {
         }
     }
     
-
-    func navigationController(navigationController: UINavigationController, shouldSelectViewController viewController: UIViewController) -> Bool {
-        if (viewController is PhotoViewController) {
-            takePhoto()
-            return false
-        } else {
-            return true
-        }
-    }
-
 }

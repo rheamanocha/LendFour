@@ -76,10 +76,6 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     override func viewWillAppear(animated: Bool) {
-        /* REALM STUFF
-        let realm = Realm()
-        notes = realm.objects(Note).sorted("dateBorrowed", ascending: false)
-        */
         
         state = .DefaultMode
         super.viewWillAppear(animated)
@@ -170,7 +166,7 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 // MARK: - Extensions
 
-/* DELETE
+
 extension MyNotesViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -203,9 +199,9 @@ extension MyNotesViewController: UITableViewDelegate {
         }
     }
 }
-*/
 
-/* DELETE
+
+
 extension MyNotesViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -222,7 +218,7 @@ extension MyNotesViewController: UISearchBarDelegate {
         */
     }
 }
-*/
+
 
 extension MyNotesViewController: UITableViewDataSource {
     

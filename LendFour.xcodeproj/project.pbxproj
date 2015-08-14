@@ -10,7 +10,6 @@
 		467DFAC0032B3708C3336A79 /* Pods_LendFour.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA65CF90C7927F4C5FC0BEE /* Pods_LendFour.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E159E2E51B7A9E950098E589 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159E2E41B7A9E950098E589 /* Post.swift */; };
 		E1B0FAE01B7262C800F2644F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FADF1B7262C800F2644F /* AppDelegate.swift */; };
-		E1B0FAE21B7262C800F2644F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0FAE11B7262C800F2644F /* ViewController.swift */; };
 		E1B0FAE51B7262C800F2644F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1B0FAE31B7262C800F2644F /* Main.storyboard */; };
 		E1B0FAE71B7262C800F2644F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1B0FAE61B7262C800F2644F /* Images.xcassets */; };
 		E1B0FAEA1B7262C800F2644F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B0FAE81B7262C800F2644F /* LaunchScreen.xib */; };
@@ -43,7 +42,6 @@
 		E1B0FADA1B7262C800F2644F /* LendFour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LendFour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B0FADE1B7262C800F2644F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1B0FADF1B7262C800F2644F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E1B0FAE11B7262C800F2644F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E1B0FAE41B7262C800F2644F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E1B0FAE61B7262C800F2644F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E1B0FAE91B7262C800F2644F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 		E1B0FB021B72833E00F2644F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E1B0FAE11B7262C800F2644F /* ViewController.swift */,
 				E1B0FB001B7281CF00F2644F /* MyNotesViewController.swift */,
 				E1B0FB0C1B72C47600F2644F /* MyNewNoteViewController.swift */,
 				E1B0FB0E1B72E93900F2644F /* MyNoteDisplayViewController.swift */,
@@ -366,7 +363,6 @@
 			files = (
 				E1B0FB081B7291A800F2644F /* Note.swift in Sources */,
 				E159E2E51B7A9E950098E589 /* Post.swift in Sources */,
-				E1B0FAE21B7262C800F2644F /* ViewController.swift in Sources */,
 				E1B0FB0D1B72C47600F2644F /* MyNewNoteViewController.swift in Sources */,
 				E1B0FB051B72913E00F2644F /* StyleConstants.swift in Sources */,
 				E1B0FB011B7281CF00F2644F /* MyNotesViewController.swift in Sources */,
