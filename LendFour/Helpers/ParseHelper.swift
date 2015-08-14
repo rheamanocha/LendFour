@@ -35,7 +35,7 @@ class ParseHelper {
     static let ParseUserUsername      = "username"
     
     // static - can call w/o having to create an instance of ParseHelper
-    static func timelineRequestforCurrentUser(completionBlock: PFArrayResultBlock) {
+    static func timelineRequestforCurrentUser(range: Range<Int>, completionBlock: PFArrayResultBlock) {
         let followingQuery = PFQuery(className: ParseFollowClass)
         followingQuery.whereKey(ParseLikeFromUser, equalTo:PFUser.currentUser()!)
         

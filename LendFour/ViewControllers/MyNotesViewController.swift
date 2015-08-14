@@ -10,12 +10,29 @@ import UIKit
 import Parse
 import ConvenienceKit
 
-class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TimelineComponentTarget {
     
     // @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     var posts: [Post] = []
+    
+    // For TimelineComponentTargetProtocol
+    let defaultRange = 0...9
+    let additionalRangeSize = 10
+    
+    var timelineComponent: TimelineComponent<Post, MyNotesViewController>!
+    
+    func loadInRange(range: Range<Int>, completionBlock: ([Post]?) -> Void) {
+        // 1
+        ParseHelper.timelineRequestforCurrentUser(range) {
+            (result: [AnyObject]?, error: NSError?) -> Void in
+            // 2
+            let posts = result as? [Post] ?? []
+            // 3
+            completionBlock(posts)
+        }
+    }
     
     // MARK: Search
     
@@ -71,6 +88,9 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
 
      override func viewDidLoad() {
         super.viewDidLoad()
+        
+        timelineComponent = TimelineComponent(target:self)
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -80,12 +100,7 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        ParseHelper.timelineRequestforCurrentUser {
-            (result: [AnyObject]?, error: NSError?) -> Void in
-            self.posts = result as? [Post] ?? []
-            
-            self.tableView.reloadData()
-        }
+        timelineComponent.loadInitialIfRequired()
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,34 +149,9 @@ class MyNotesViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 extension MyNotesViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //selectedNote = notes[indexPath.row] //1
-        self.performSegueWithIdentifier("ShowExistingNote", sender: self) //2
-    }
-    
-    //check if a row can be edited
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    
-    // activated when left swipe table view, presented with Delete option
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            
-            /* REALM STUFF
-            let note = notes[indexPath.row] as Object
-            
-            
-            let realm = Realm()
-            
-            realm.write() {
-                realm.delete(note)
-
-            }
-            
-            notes = realm.objects(Note).sorted("dateBorrowed", ascending: false)
-            */
-        }
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        timelineComponent.targetWillDisplayEntry(indexPath.row)
     }
 }
 
@@ -189,14 +179,14 @@ extension MyNotesViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // table view needs to have as many rows as we have posts stored in the posts property
-        return posts.count
+        return timelineComponent.content.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Casted NoteTableViewCell
         let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as! NoteTableViewCell
         
-        let post = posts[indexPath.row]
+        let post = timelineComponent.content[indexPath.row]
         // trigger image download
         post.downloadImage()
         // assign the post that shall be displayed to the post property
