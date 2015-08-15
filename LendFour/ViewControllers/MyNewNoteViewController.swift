@@ -35,18 +35,32 @@ class MyNewNoteViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "Save":
+                post.uploadPost()
+                println("Saved")
+                
+            case "Cancel":
+                post.deleteInBackgroundWithBlock(nil)
+                println("Cancel")
+                
+            default:
+                println("No one loves \(identifier)")
+            }
+        }
         
     }
     
     // MARK: PhotoTaking
+    
+    let post = Post()
     @IBAction func takePhoto(sender: UIButton) {
         // instantiate photo taking class, provide callback for when photo  is selected
         photoTakingHelper =
             PhotoTakingHelper(viewController: self.navigationController!) { (image: UIImage?) in
                 
-                let post = Post()
-                post.image.value = image!
-                post.uploadPost()
+                self.post.image.value = image!
                 
                 
         }

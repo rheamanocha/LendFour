@@ -40,6 +40,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="postImageView" destination="VYo-J8-AF8" id="R5K-ir-wzE"/>
+                                            <segue destination="n6Y-WE-pfq" kind="show" identifier="ShowExistingNote" id="9AE-xW-NLw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -241,7 +242,7 @@
         <image name="Camera" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZHL-Co-VOG"/>
+        <segue reference="9AE-xW-NLw"/>
         <segue reference="FvK-HK-6sS"/>
     </inferredMetricsTieBreakers>
 </document>
